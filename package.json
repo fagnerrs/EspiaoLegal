@@ -1,0 +1,17 @@
+{
+  "name": "espiaolegal",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Fagner Luiz de Oliveira",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.15.0",
+    "express": "^4.13.4",
+    "express-generator": "^4.13.1",
+    "mongoose": "^4.4.14"
+  }
+}
