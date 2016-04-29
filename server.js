@@ -22,12 +22,12 @@ app.set('address', server_ip_address);
 app.use('/device', deviceRouter);
 
 //provide a sensible default for local development
-var mongodb_connection_string = 'mongodb://127.0.0.1:27017/' + 'baseespiao';
+var mongodb_connection_string = 'mongodb://127.0.0.1:27017/' + 'espiaolegal';
 //var mongodb_connection_string = 'mongodb://localhost:27017/baseespiao';
 
 //take advantage of openshift env vars when available:
 if(process.env.OPENSHIFT_MONGODB_DB_URL){
-  mongodb_connection_string = process.env.OPENSHIFT_MONGODB_DB_URL + 'baseespiao';
+  mongodb_connection_string = process.env.OPENSHIFT_MONGODB_DB_URL + 'espiaolegal';
 }
 
 // Connection Database
