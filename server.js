@@ -50,6 +50,10 @@ db.once('open', function () {
 // });
 
 // start http server
-http.createServer(app).listen(app.get('port'), function(){
-  console.log("Listening on " + app.get('address') + ", port " + app.get('port'))
+app.listen(app.get('port'), app.get('address'), function() {
+  console.log("... port %d in %s mode...");
 });
+
+// http.createServer(app).listen(app.get('port'), function(){
+//   console.log("Listening on " + app.get('address') + ", port " + app.get('port'))
+// });
