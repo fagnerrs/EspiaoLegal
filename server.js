@@ -31,7 +31,7 @@ app.use('/device', deviceRouter);
 
 //take advantage of openshift env vars when available:
 if(process.env.OPENSHIFT_MONGODB_DB_URL){
-  mongodb_connection_string = process.env.OPENSHIFT_MONGODB_DB_URL + 'espiaolegal';
+  mongodb_connection_string = 'mongodb://'+ process.env.OPENSHIFT_MONGODB_DB_USERNAME + ':' + process.env.OPENSHIFT_MONGODB_DB_PASSWORD +'@' + process.env.OPENSHIFT_MONGODB_DB_HOST + ':' + process.env.OPENSHIFT_MONGODB_DB_PORT + '/' + 'espiaolegal';
 }
 
 // Connection Database
@@ -40,7 +40,6 @@ mongoose.connect(mongodb_connection_string);
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function () {
-
     console.log("Mongoose connected correctly to server");
 });
 
