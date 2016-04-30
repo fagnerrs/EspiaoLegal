@@ -11,9 +11,13 @@ deviceRouter.route('/')
 .get(function(req,res,next){
 
     Devices.find({}, function(err, device){
-        if (err) throw err;
-
-        res.json(device);
+        if (err) {
+          res.writeHead(200, {'Content-Type': 'text/plain'});
+          res.end(err);
+        }
+        else {
+          res.json(device);
+        }
     });
 
 })
