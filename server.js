@@ -8,7 +8,7 @@ var bodyParser = require('body-parser');
 
 var server_port = process.env.OPENSHIFT_NODEJS_PORT || 8080
 var server_ip_address = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1'
-var mongodb_connection_string = 'mongodb://127.0.0.1:27017/' + 'espiaolegal';
+var mongodb_connection_string = 'mongodb://$OPENSHIFT_MONGODB_DB_HOST:$OPENSHIFT_MONGODB_DB_PORT/' + 'espiaolegal';
 
 // var server_port = 3000;
 // var server_ip_address = "localhost"
@@ -30,9 +30,9 @@ app.use('/device', deviceRouter);
 
 
 //take advantage of openshift env vars when available:
-if(process.env.OPENSHIFT_MONGODB_DB_URL){
-  mongodb_connection_string = 'mongodb://'+ process.env.OPENSHIFT_MONGODB_DB_USERNAME + ':' + process.env.OPENSHIFT_MONGODB_DB_PASSWORD +'@' + process.env.OPENSHIFT_MONGODB_DB_HOST + ':' + process.env.OPENSHIFT_MONGODB_DB_PORT + '/' + 'espiaolegal';
-}
+// if(process.env.OPENSHIFT_MONGODB_DB_URL){
+//   mongodb_connection_string = 'mongodb://'+ process.env.OPENSHIFT_MONGODB_DB_USERNAME + ':' + process.env.OPENSHIFT_MONGODB_DB_PASSWORD +'@' + process.env.OPENSHIFT_MONGODB_DB_HOST + ':' + process.env.OPENSHIFT_MONGODB_DB_PORT + '/' + 'espiaolegal';
+// }
 
 // Connection Database
 
