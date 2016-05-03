@@ -1,0 +1,26 @@
+{
+  "name": "espiaolegal",
+  "homepage": "https://github.com/fagnerrs/EspiaoLegal",
+  "authors": [
+    "Fagner Oliveira <fagnerrs@gmail.com>"
+  ],
+  "description": "sistema de gravação de coordenadas geográficas",
+  "main": "index.html",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.6",
+    "angular": "^1.5.5",
+    "angular-route": "^1.5.5",
+    "angular-ui-router": "^0.2.18",
+    "angular-resource": "^1.5.5",
+    "font-awesome": "^4.6.1"
+  }
+}
