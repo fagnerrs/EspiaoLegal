@@ -12,8 +12,9 @@ deviceRouter.route('/')
 
     Devices.find({}, function(err, device){
         if (err) {
-          res.writeHead(200, {'Content-Type': 'text/plain'});
-          res.end(err);
+          res.json({error: "Error fetching " + err});
+          // res.writeHead(200, {'Content-Type': 'text/plain'});
+          // res.end(err);
         }
         else {
           res.json(device);

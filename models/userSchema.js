@@ -3,15 +3,19 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 // create a schema
-var deviceSchema = new Schema({
+var userSchema = new Schema({
     name: {
+        type: String,
+        required: true
+    },
+    password: {
+        type: String,
+        required: true
+    },
+    email: {
         type: String,
         required: true,
         unique: true
-    },
-    strongkey: {
-        type: String,
-        required: true
     }
 }, {
     timestamps: true
@@ -19,7 +23,7 @@ var deviceSchema = new Schema({
 
 // the schema is useless so far
 // we need to create a model using it
-var Devices = mongoose.model('Device', deviceSchema);
+var Users = mongoose.model('User', userSchema);
 
 // make this available to our Node applications
-module.exports = Devices;
+module.exports = Users;
