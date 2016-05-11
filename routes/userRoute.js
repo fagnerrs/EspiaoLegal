@@ -1,89 +1,58 @@
 var express = require('express');
-var bodyParser = require('body-parser');
-var mongoose = require('mongoose');
-var config = require('.././config/config_prod.js');
+var router = express.Router();
+var passport = require('passport');
+var User = require('../models/userSchema');
+var Verify    = require('./verify');
 
-var Users = require('../models/userSchema');
-
-var userRouter = express.Router();
-userRouter.use(bodyParser.json());
-userRouter.route('/')
-
-.get(function(req,res,next){
-
-    //Users.find({}, function(err, user){
-//        if (err) {
-          res.writeHead(200, {'Content-Type': 'text/plain'});
-          res.end(config.mongodb_connection_string);
-        // }
-        // else {
-        //   res.json(user);
-        // }
-    //});
-
-})
-
-.post(function(req, res, next){
-    Users.create(req.body, function(err, user){
-        res.writeHead(200, {'Content-Type': 'text/plain'});
-
-        if (err){
-            res.end(err);
-        }
-        else {
-          var id = user._id;
-          res.end('Added the user with id ' + id);
-        }
-
-    });
-})
-
-.delete(function(req, res, next){
-  Users.remove({}, function(err, resp){
-      if (err) throw err;
-
-      res.json(resp);
-  });
+/* GET users listing. */
+router.get('/', function(req, res, next) {
+  res.send('respond with a resource');
 });
 
-userRouter.route('/:userId')
-
-.get(function(req,res,next){
-    Users.findByID(req.params.userId, function(err, resp){
-      if (err) throw err;
-
-      res.json(resp);
-  });
-})
-
-.post(function(req, res, next){
-
-    Users.findByID(req.params.userId, function(err, resp){
-      if (err) throw err;
-
-      res.json(resp);
-  });
-})
-
-.put(function(req, res, next){
-    Users.findByIdAndUpdate(req.params.userId,
-        { $set: req.body },
-        { new: true },
-        function(err, user){
-            if (err) throw err;
-
-            res.json(user);
-
+router.post('/register', function(req, res) {
+    User.register(new User({ username : req.body.username }),
+      req.body.password, function(err, user) {
+        if (err) {
+            return res.status(500).json({err: err});
+        }
+        passport.authenticate('local')(req, res, function () {
+            return res.status(200).json({status: 'Registration Successful!'});
         });
-})
-
-.delete(function(req, res, next){
-    Users.remove(req.params.userId, function(err, resp){
-        if (err) throw err;
-
-        res.json(resp);
     });
 });
 
+router.post('/login', function(req, res, next) {
+  passport.authenticate('local', function(err, user, info) {
+    if (err) {
+      return next(err);
+    }
+    if (!user) {
+      return res.status(401).json({
+        err: info
+      });
+    }
+    req.logIn(user, function(err) {
+      if (err) {
+        return res.status(500).json({
+          err: 'Could not log in user'
+        });
+      }
 
-module.exports = userRouter;
+      var token = Verify.getToken(user);
+              res.status(200).json({
+        status: 'Login successful!',
+        success: true,
+        token: token
+      });
+    });
+  })(req,res,next);
+});
+
+router.get('/logout', function(req, res) {
+    req.logout();
+  res.status(200).json({
+    status: 'Bye!'
+  });
+});
+
+module.exports = router;

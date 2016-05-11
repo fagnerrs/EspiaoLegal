@@ -1,14 +1,14 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
-
+var Verify = require('./verify');
 var Devices = require('../models/deviceSchema');
 
 var deviceRouter = express.Router();
 deviceRouter.use(bodyParser.json());
 deviceRouter.route('/')
 
-.get(function(req,res,next){
+.get(Verify.verifyOrdinaryUser, function(req,res,next){
 
     Devices.find({}, function(err, device){
         if (err) {

@@ -1,6 +1,6 @@
 .loginBody {
     background-color: #444;
-    background: url(http://s18.postimg.org/l7yq0ir3t/pick8_1.jpg);
+    /*background: url(http://s18.postimg.org/l7yq0ir3t/pick8_1.jpg);*/
 
 }
 .form-signin input[type="text"] {
@@ -34,7 +34,7 @@ margin: auto;
 }
 .panel {
 margin-bottom: 20px;
-background-color: rgba(255, 255, 255, 0.75);
+background-color: rgba(255, 255, 255, 0.95);
 border: 1px solid transparent;
 border-radius: 4px;
 -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);

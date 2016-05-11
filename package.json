@@ -11,9 +11,14 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.15.0",
+    "cookie-parser": "^1.4.1",
     "ejs": "^2.4.1",
     "express": "^4.13.4",
     "express-generator": "^4.13.1",
-    "mongoose": "^4.4.14"
+    "jsonwebtoken": "^6.2.0",
+    "mongoose": "^4.4.14",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
+    "passport-local-mongoose": "^4.0.0"
   }
 }
