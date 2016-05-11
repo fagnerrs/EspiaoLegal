@@ -1,15 +1,18 @@
 'use strict';
 
 angular.module('espiaoApp')
-.controller('loginCtrl', ['$scope', '$http', function($scope, $http) {
+.controller('loginCtrl', ['$scope', '$http', '$location', function($scope, $http, $location) {
 
     $scope.credentials = { username:"", password:"" };
+    $scope.isLoginError = false;
     $scope.sendData = function()
     {
 
+      $scope.isLoginError = false;
+
       var request = {
          method: 'POST',
-         url: 'http://localhost:3000/User/login/',
+         url: $location.host() + '/User/login',
          headers: {
            'Content-Type': 'application/json'
          },
@@ -21,8 +24,7 @@ angular.module('espiaoApp')
         alert('fine');
 
       }, function(response){
-        debugger;
-            alert('erro');
+            $scope.isLoginError = true;
       });
 
     };

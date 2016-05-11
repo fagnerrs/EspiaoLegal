@@ -33,7 +33,9 @@
                                 class="help-block">Senha é obrigatória.</span>
                         </div>
 
-                        <br></br>
+                        <br>
+
+                        <div ng-show="isLoginError" class="alert alert-danger" role="alert">Usuário ou senha incorretos.</div>
 
                         <input class="btn btn-lg btn-success btn-block" ng-disabled="loginForm.$invalid" type="submit" id="login" value="Login »">
 
